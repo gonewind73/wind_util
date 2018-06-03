@@ -4,12 +4,12 @@
 from setuptools import setup
 
 setup(name='python-windutil',
-      py_modules = ["filefolder.py","logtool.py"],
+      py_modules = ["filefolder","logtool"],
       author='gonewind.he',
       author_email='gonewind.he@gmail.com',
       maintainer='gonewind',
       maintainer_email='gonewind.he@gmail.com',
-      url='https://github.com/gonewind73/windutil',
+      url='https://github.com/gonewind73/wind_util',
       description='util in python',
       long_description=open('README.rst').read(),
       version='1.0.0',

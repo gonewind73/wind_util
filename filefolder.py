@@ -7,14 +7,13 @@ Created on 2018年1月13日
 
 import os
 from _stat import S_ISDIR, S_ISREG
-import datetime
 import hashlib
 import struct
 import unittest
 import logging
-from pp_network import set_debug
+from logtool import set_debug
 import math
-import time
+import sys
 
 NODE_TYPE_FILE = 1
 NODE_TYPE_FOLDER = 2
@@ -28,6 +27,13 @@ SIZE_FILTER = {"All":(0, 100000000000), "< 1 KB":(0, 1000), '<1 MB':(1000, 10000
 SIZE_FILTER_TUPLE = ("All", "< 1 KB", '<1 MB', "<10 MB", '>10 MB')
 FILE_STATUS={"unknown":128,"new":1,"old":2,"same":4}
 
+def get_fullpath(work_dir, filename):    
+    if sys.platform.startswith("win"):
+        fullpath_filename = filename  if filename.find(":") > 0 else os.path.join(work_dir, filename)
+    else:
+        fullpath_filename = filename  if filename.startswith("/") else os.path.join(work_dir, filename)
+#     logging.debug("fullpath:%s"%fullpath_filename)
+    return fullpath_filename
 
 class FileInfo(object):
     '''
